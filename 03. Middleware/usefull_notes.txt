@@ -1,0 +1,2 @@
+app.Use(async (HttpContext context, RequestDelegate next) => { -> this is to pass a middle ware 
+app.Run(async (HttpContext context) => { -> this will execute the last middleware
