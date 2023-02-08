@@ -13,7 +13,7 @@ app.Use(async (HttpContext context, RequestDelegate next) => {
 });
 
 //middleware 2
-app.UseMiddleware<MyCustomMiddleware>();
+app.UseMiddleware<MyCustomMiddleware>(); // This is used as the middleware created in the other file
 
 
 //middleware 3

@@ -1,2 +1,15 @@
 app.Use(async (HttpContext context, RequestDelegate next) => { -> this is to pass a middle ware 
 app.Run(async (HttpContext context) => { -> this will execute the last middleware
+---clas middleware
+using MiddlewareExample.CustomMiddleware; -> to import the middleware in the folder
+builder.Services.AddTransient<MyCustomMiddleware>(); -> this is to use the middleware created in the <Nameof your cs file>
+app.UseMiddleware<MyCustomMiddleware>(); -> in order to call the middleware
+
+----- how to use an extension method
+    public static class CustomMiddlewareExtension
+    {
+        public static IApplicationBuilder UseMyCustomMiddleware(this IApplicationBuilder app) 
+        {
+           return app.UseMiddleware<MyCustomMiddleware>();
+        }
+    }

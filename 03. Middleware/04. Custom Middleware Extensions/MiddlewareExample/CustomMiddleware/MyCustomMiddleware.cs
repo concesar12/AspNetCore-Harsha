@@ -10,9 +10,10 @@
         }
     }
 
-    public static class CustomMiddlewareExtension
+    public static class CustomMiddlewareExtension // Extension methos is a method that is going to be inserted into an onject dynamically
     {
-        public static IApplicationBuilder UseMyCustomMiddleware(this IApplicationBuilder app)
+        public static IApplicationBuilder UseMyCustomMiddleware(this IApplicationBuilder app) 
+// This IApplicationBuilder is a higer class of build which creates the app, the idea is to insert a methos inside this class
         {
             return app.UseMiddleware<MyCustomMiddleware>();
         }
