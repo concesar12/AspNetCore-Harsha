@@ -13,3 +13,9 @@ app.UseMiddleware<MyCustomMiddleware>(); -> in order to call the middleware
            return app.UseMiddleware<MyCustomMiddleware>();
         }
     }
+
+*It is possible to add a middleware by right clicking in the project and then add and select middleware
+
+Middleware is a component that is assembled into the application pipeline to handle requests and responses.
+
+UseWhen -> that is when I want to process a middleware in a conditional case.

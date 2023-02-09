@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
-
+//This is the preffered way to create middlewares after .net core 6 
 namespace MiddlewareExample.CustomMiddleware
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project

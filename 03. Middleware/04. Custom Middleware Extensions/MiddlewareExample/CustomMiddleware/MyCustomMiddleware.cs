@@ -2,7 +2,7 @@
 {
     public class MyCustomMiddleware : IMiddleware
     {
-        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next) // Task async to delegate middleware
         {
             await context.Response.WriteAsync("My Custom Middleware - Starts\n");
             await next(context);

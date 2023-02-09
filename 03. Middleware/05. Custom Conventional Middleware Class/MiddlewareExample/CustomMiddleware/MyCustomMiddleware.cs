@@ -1,4 +1,5 @@
 ﻿namespace MiddlewareExample.CustomMiddleware
+//This is the old fashion of creating middlewares
 {
     public class MyCustomMiddleware : IMiddleware
     {

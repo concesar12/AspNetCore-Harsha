@@ -1,6 +1,6 @@
 As important notes I will leave the most important methods used in this section
 1. context.Request.Method -> this methos will tell me what is the type of request method "GET" "POST"
-2. context.Request.Path -> this will specify the path
+2. context.Request.Path -> this will specify the path of the http request
 3. context.Request.Query.ContainsKey("firstNumber") -> that means if after the url "/?firstNumber=34" see if contains that one
     MEthos specific for query. -> It is a map [key][value]
 4. context.Response.StatusCode -> this will tell the server to respond with the defined status code
