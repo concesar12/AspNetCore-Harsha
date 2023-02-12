@@ -1,6 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
+// This section is to show variable parameters that can be in a path, means they can change called (route parameter)
+
 //enable routing
 app.UseRouting();
 
@@ -19,7 +21,8 @@ app.UseEndpoints(endpoints =>
   //Eg: employee/profile/john
   endpoints.Map("employee/profile/{EmployeeName}", async context =>
   {
-    string? employeeName = Convert.ToString(context.Request.RouteValues["employeename"]);
+    string? employeeName = Convert.ToString(context.Request.RouteValues["employeename"]); // It is case insensitive
+    
     await context.Response.WriteAsync($"In Employee profile - {employeeName}");
   });
 });
