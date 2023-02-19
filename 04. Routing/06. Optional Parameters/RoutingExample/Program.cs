@@ -25,7 +25,7 @@ app.UseEndpoints(endpoints =>
 
 
  //Eg: products/details/
- endpoints.Map("products/details/{id?}", async context => {
+ endpoints.Map("products/details/{id?}", async context => { // in this case a question mark was added to say that this is optional
   if (context.Request.RouteValues.ContainsKey("id"))
   {
    int id = Convert.ToInt32(context.Request.RouteValues["id"]);

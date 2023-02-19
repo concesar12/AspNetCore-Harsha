@@ -17,3 +17,15 @@ app.UseEndpoints(endpoints => -> this is a callback to put the enpoits with the 
 in order to access values in the routing path use context.Request.RouteValues["filename"]
 
 since c#9 it is posible to use ? after a type to make nullable
+
+//------------Default parameters
+
+This one relates to when you don't want to have parameters in the http request at least no fixed parameters
+
+so by adding a value after an equals, it is possible to set a default value 
+ endpoints.Map("employee/profile/{personName=Cesar}", async context =>
+
+//---------------Optional parameters
+
+In case to receive in the http header something like null it is useful to have an optional parameter
+this is done by marking that parameter with question mark {parameter?}

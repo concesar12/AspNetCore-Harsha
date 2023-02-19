@@ -17,7 +17,7 @@ app.UseEndpoints(endpoints =>
   });
 
   //Eg: employee/profile/john
-  endpoints.Map("employee/profile/{EmployeeName=harsha}", async context =>
+  endpoints.Map("employee/profile/{EmployeeName=harsha}", async context => // this is the default value it will take in case that only employee/profile es provided 
   {
     string? employeeName = Convert.ToString(context.Request.RouteValues["employeename"]);
     await context.Response.WriteAsync($"In Employee profile - {employeeName}");
