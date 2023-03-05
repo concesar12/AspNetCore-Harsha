@@ -1,0 +1,20 @@
+*Beginner 
+1. What is ASP.Net
+Server side technology used for developing dynamic websites and web applications
+2. ASP.NET
+Cross platform that works on .NET framework runs on all operating systems
+3. What is ASP.NET life cicle
+is classified in two cycles: -> goes to several stages such as initialization, running, restoring and rendering 
+*application lifecicle
+*page life cicle
+4. ASP.NET uses a a web Library
+5. CLR -> Common Language Runtime 
+some services provided by CLR
+*Vaerification
+*Garbage collection 
+*Security and memory management
+6. List types of application life cycle
+* Application Start- Object Creation * HTTP Application Creation * Dispose * Applciation end
+7. ASP -> Active Server Pages development framework used for developing dynamic web pages
+8. Web forms -> web pages that a user request using a browser
+9. Difference between ASP and ASP.NET

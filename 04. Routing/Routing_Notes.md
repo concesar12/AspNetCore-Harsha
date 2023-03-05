@@ -29,3 +29,17 @@ so by adding a value after an equals, it is possible to set a default value
 
 In case to receive in the http header something like null it is useful to have an optional parameter
 this is done by marking that parameter with question mark {parameter?}
+
+// --------------Route constraints 1
+This is used to ask retrictions in the parameters 
+endpoints.Map("products/type/{id:int?}", async context -> by using colon and especifiyng the type that should receive I can declare the constraint
+// --------------Route constraints 2
+There is another type for constraint like DateTime
+guid -> this type is used for unique identifiers
+It is possible to generate GUID going to tool and create a new GUID
+// --------------Route constraints 3
+There are constraints for minlenght or maxlenght 
+length(2,8)
+endpoints.Map("sales-report/{year:int:min(1900)}/{month:regex(^(apr|jul|oct|jan)$)}", async context => -> way to use it with regex
+
+
