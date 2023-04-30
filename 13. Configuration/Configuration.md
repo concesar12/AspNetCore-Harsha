@@ -103,3 +103,38 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
     config.AddJsonFile("MyOwnConfig.json", optional:true, reloadOnChange: true); 
 });
 Better to have separation of json files
+//------------------------------------Http Client part 1
+1. when I want to connect to other external restful web services from my asp.net core application we have a predefined class called HTTP client. This is used to send HTTP request to server and get the response from the same. In this case the the asp.net application is the Client to request services. The ASP.net application creates an object of type HTTP Client to receive responses and make requests.
+
+steps:
+1. Created a new asp.net application with all the folders and subfolders
+2. we created the views and started working on them: creating two flex boxes left: app title right login, logout
+3. added css file and Views and shared views added HTML
+4. Now we are creating the HTTP Client Service, with this we can inject an HTTP service
+5. Then I creted a new service to use the HTTP client
+6. What is the difference between hhtp client and http factory: factory is an interface which is used to create an instance of HTTP client class
+7. Instead of creating my own instance of HTTP client the factory will actually help me creting one, the benefit is that when I am finish with the action then the factory will take care of disposing the object created. http client closes the connection with the server automatically.
+8. with the method createClient() then I do not need to have a new and I have to keep it in an using block because once it finished using it will closed automatically
+9. Thi is the way to make a request to an API:
+        public async Task method()
+        {
+            using (HttpClient httpClient = _httpClientFactory.CreateClient())
+            {
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage()
+                {
+                    RequestUri = new Uri("url"),
+                    Method = HttpMethod.Get
+                };
+
+                HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+            }
+
+//---------------------------------------HTTP Client 2
+With this Http service I can to connect to any other service that is not in my control
+1. We visit finhub.io and we register
+2. We goy the API key and pasted in the Uri method
+3. then we went to documentation and select Quote, 
+4. in here we selected the CURL since it will give us the actual url of the service
+5. In order to read the response I have to vrete an object to read it this comes from the response body
+6. Then In program.cs we add the service to the scope
+7. then in home controller we are going to read that controller service
