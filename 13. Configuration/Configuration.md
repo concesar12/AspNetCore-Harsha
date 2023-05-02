@@ -138,3 +138,28 @@ With this Http service I can to connect to any other service that is not in my c
 5. In order to read the response I have to vrete an object to read it this comes from the response body
 6. Then In program.cs we add the service to the scope
 7. then in home controller we are going to read that controller service
+//---------------------------------------HTTP Client 3
+In the last lecture we got the response from the stocks API in the variable, so now we are going to use it. 
+1. We will convert the responses that we can have in a dictionary object
+2. We have used the Json serializer to convert the response into a dictionary
+3. We are now creating an interface
+4. after creating the interface we are going to cvfall it in the service we created first that was FinnhubService
+5. Then we are adding check and exceptions in case it will fail
+6. Now we changed th e method() fro the one that we just created : await _finnhubService.GetStockPriceQuote()
+7. We added a dynamic value in the key with the use of $ EX new Uri($"https://finnhub.io/api/v1/quote?symbol={stockSymbol}&token=ch73ed9r01qhmmuo0bi0ch73ed9r01qhmmuo0big"),
+8. So now We will create a vie that will represent what we want to have
+9. Now we will write and store the key in a safe manner
+10. We will enable users secrets in the application
+11. Click in the solution and then in the terminal: dotnet user-secrets init --project StocksApp
+(I can check the users secrets in the stocks app)
+12. dotnet user-secrets set  "FinnhubToken" ch73ed9r01qhmmuo0bi0ch73ed9r01qhmmuo0big --project StocksApp
+(In order to see it I just need to right click on the project and mange secrets)
+13. added the configuration in Finhubservice
+14. and then we change this line :  RequestUri = new Uri($"https://finnhub.io/api/v1/quote?symbol={stockSymbol}&token={_configuration["FinnhubToken"]}"),
+15. now in Home controller we want to make type of stock dynamically changable: we can configure it to be in appsettings.json
+16. so instead of using Iconfiguration to added to homecontroller we will use the options pattern 
+17. started by creating a class TradingOptions
+18. then change part 13 to inject what was done in the new options class
+19. We created a new model Stock.cs and added some attributes
+20. then we passed the model filled up to the view index
+21. add the view stuff
