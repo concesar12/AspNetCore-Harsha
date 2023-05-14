@@ -61,3 +61,25 @@ DTO-> Data transfer object-> they are used to be usend as response/request
 1. We created the personResponse DTO now
 2. in the response is what we want the user to see
 3. meaning of public static PersonResponse ToPersonResponse(this Person person) is this is an extention method and I would like to include the same with person class
+//---------------------------Add Person -xUnitTest
+We will Create the unit tests for the person
+1. We created the interface IPersonService and build the methods :
+PersonResponse AddPerson(PersonAddRequest? personAddRequest);
+List<PersonResponse> GetAllPersons();
+2. Now We are going to implement that interface by creating the PersonService
+3. It can implement the internet by clickong on quick actions and implement interface
+4. Now We create the new test class PersonServiceTest
+5. REMEMBER !!! always have to bring the nuget package -> Xunittest and microsoft.unit.test
+//--------------------------- Add Person Implementation
+ Time to implement.
+ These are the steps to take to implement the add person service
+ //Check if "personAddRequest" is not null
+ //Validate all properties of "personAddRequest"
+ //Convert "personAddRequest" from "PersonAddRequest" type to "Person".
+ //Generate a new PersonID
+ //Then add it into List<Person>.
+ //Return PersonResponse object with generated PersonID  
+ 1. First implement the person service
+ 2. first check person request comes null we used nameof() because ArhumentNullException neest to know the name of the parameter.
+ 3. Aproblem in here is that we have to get in PersonResponse service the conutry name based on the country ID
+4. Nex lecture we wil use model validation.
