@@ -83,3 +83,67 @@ List<PersonResponse> GetAllPersons();
  2. first check person request comes null we used nameof() because ArhumentNullException neest to know the name of the parameter.
  3. Aproblem in here is that we have to get in PersonResponse service the conutry name based on the country ID
 4. Nex lecture we wil use model validation.
+//------------------------- Add Person Validation
+the problem raises because we are only validating one condition in the person name. So will validate the PersonaddRequest Model.
+1. We are going to personaddrequest
+2. we aded as an example: [Required(ErrorMessage = "Person Name can't be blank")]
+        public string? PersonName { get; set; }
+3. Now in personsService we added the model validation: 
+4. bool isValid = Validator.TryValidateObject(obj, validationContext, validationResults, true); in here the true at last means that it will not only validate the required values but all the values. Validationresults stores all the errors.
+5. Then the other problem is that as we added new models then we have to add the same pieces of code several times that is the reason the helpers are created
+6. We have made the validation as an objectg to be generic in the helper and it is static to avoid creating a new object validation.
+//---------------------------- Get Person By Person ID -Xunit test
+1. In IPersonService we added a new method PersonResponse? GetPersonByPersonID(Guid? personID);
+2. then we have to create the implementation in the actual service.
+3. then We stated adding the tests cases
+4. We added countries on top to be verified in the test case GetPersonByPersonID_WithPersonID
+//---------------------------14. Get Person By Person ID - Implementation
+Things we have to check to implement this: 
+//Check if "personID" is not null.
+//Get matching person from List<Person> based personID
+//Convert matching person object from "Person" to "PersonResponse" type
+//Return PersonResponse object
+1. So we started the implementation in person service
+//----------------------------15. Get All Persons - xUnit Test
+1. first we go to the person service test
+2. so we created the scenario with coutries first
+3. then the person with the info
+4. then we verify that all the persons are in the list.
+//---------------------------- 16. Get All Persons - Implementation
+We are going to implement the next: 
+//Convert all persons from "Person" type to "PersonResponse" type.
+//Return all PersonResponse objects
+1. We are going into person Service
+return _persons.Select(temp => temp.ToPersonResponse()).ToList();
+//---------------------------17. TestOutputHelper
+The problem to handle here is when running the unit test there is no value shown there. So we will have something printed when running them.
+1. We started by injecting in the person test constructor ItestOutputHelper
+in order to use this helper we have to add :using Xunit.Abstractions;
+2. so now we added the prints over the tests
+3. the problem was that tostring did not print the actual value so we have to implement our own tostring
+4. We went to PersonResponse to override the tostring method
+//--------------------------18. Get Filtered Persons - xUnit Test
+The idea now is to on top of getting all person we are going to search persons we are going to create a method called getfilteredpersons.
+1. We created the method in the IPersoninterface GetFilteredPersons we are returning a PersonResponse because is not a good practice to expoce the domain model outside the service.
+2. now we are creating dummy implementation for the method created in the interface.
+3. Then we created the tests for this method.
+//----------------------------19. Get Filtered Persons - Implementation
+now we are going to implement getfilteredpersons
+//Check if "searchBy" is not null
+//Get matching persons from List<Person> based on given searchBy and searchString
+//Convert the matching persons from "Person" type to "PersonResponse" type.
+//Return all matching PersonResponse objects
+1. We went to person service to implement the filtered persons
+2. Important to know always check if we have an argument null before using Contains or similar, since it can cause a lot of troubles
+3. we created switch cases for this implementation and it was recommended to use reflection to avoid code repetition.
+//----------------------------20. Get Sorted Persons - xUnit Test
+The intend for this sort is to get the order based on a specific column.
+1. We went to the person interface to create the method GetSortedPersons
+2. We have created inside our Enums a new class for SortOrderOptions which will hold if it should be ascending or descending order
+3. now we will add the dummy implementation.
+4. And finally the unit tests for that.
+//-----------------------------21. Get Sorted Persons - Implementation
+PersonService implementation
+1. First check if it is null
+2. then start with the switch case to check the data and ordering
+//-----------------------------22. Update Person - Creating DTO
