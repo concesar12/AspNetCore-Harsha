@@ -147,3 +147,34 @@ PersonService implementation
 1. First check if it is null
 2. then start with the switch case to check the data and ordering
 //-----------------------------22. Update Person - Creating DTO
+DTO's goal is to transfer objects from controller to service and vice versa
+1. The first thing then is create a new class in DTO called PersonUpdateRequest that is similar to person add.
+2. Then we added in personResponse TopersonUpdateRequest
+3. Gender = (GenderOptions)Enum.Parse(typeof(GenderOptions), Gender, true) In this case true is used to determine case insensitive
+//----------------------------23. Update Person - xUnit Test
+Unit test time.
+1. we created the method in the interface.
+2. we added to the service as dummy
+3. created the tests
+//-----------------------------24. Update Person - Implementation
+in this lecture we will implement: 
+//Check if "personUpdateRequest" is not null
+//Validate all properties of "personUpdateRequest"
+//Get the matching "Person" object is not null 
+//Update all details from "PersonUpdateRequest" object to "Person" object
+//Convert the person object from "PErson" to "PersonResponse" type
+//Return PErsonResponse object with updated details
+1. We went to personService to implement update person
+2. We added an email since the test requires it
+3. And added a gender
+//------------------------------25. Delete Person - xUnit Test
+1. We added the method in the interface
+2. Then we added the dummy implementation in the service
+3. then we added the unit tests
+//------------------------------26. Delete Person - Implementation
+for the delete implementation
+//Check if "personID" is not null
+//Get the matching "Person" object from list<Person> based on PersonID
+//Check if matching "Person" object is not null
+//Delete the matching "Person" object from List<Person>
+//Return Boolean value indicating whether person object was deleted or not 
