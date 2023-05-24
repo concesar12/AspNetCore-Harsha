@@ -69,4 +69,7 @@ we will create the edit view which we did not so in the CRUD section
 4. We added the tag options inthe index view 
 5. in the controller we added the get and post methods for edit
 
-
+//---------------------------------08. Delete View
+1. first we created the view similarly as we have done for edit (sopy paste edit view to create delete)
+2. now we are going to create the twoi action methods for post and get
+3. we added the new delete button at the end of index
