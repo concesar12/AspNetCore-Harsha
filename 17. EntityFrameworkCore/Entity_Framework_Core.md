@@ -132,3 +132,94 @@ In this lesson we wil see how to separate the primary tables and the secondary t
 7. so we could make ConvertPersonToPersonResponse an extension method instead of what we have now.
 8. Now in person Response we can paste ConvertPersonToPersonResponse \\ However With Toperson is enough since it already has th country added so we just add  Country = person.Country?.CountryName at the end.
 9. so now in PersonService we have changed all the convertPErson to just Topersonresponse
+
+//----------------------------------------12. Async EF Operations
+So we will add asyncronous methods since every time we interact with other apps we have to wait
+1. In ICountries service we will modify methods to be Async
+2. No we have to go to the actual Country service to provide the implementation with Task and add Async and add methos with async
+3. now since we have changed to async most of the methods we got some errors that will be fixed in next lesson
+
+//----------------------------------------13. Async Controller Action Methods
+Cleaning up the signature of methods for Async methods so controller and service test need to change
+1. in person controller we will add the sync in List<PersonResponse> persons = await _personsService.GetFilteredPersons(searchBy, searchString);
+2. The controller itself now has to be async
+3. we change all the async methods
+4. It is always advisable to put the async in controllers
+5. so now we went to the tests to make them async the test made async were country test, but still we have to make person async in the next lesson
+
+//--------------------------------------14. Async Unit Test Methods
+1. in here we have to change all the non async methods for async and await them
+
+//------------------------------------- 15. Generate PDF Files
+With Rotativa we can create a PDF in .NET
+1. We will need to create a separate view in order to have the PdF printed without all the things like search bar ans titles
+2. We are going to create a new view
+3. now we have to set the layout to null to prevent the things to load 
+4. removed the persons and links, search box was deleted too
+5. form tag too and form tag was deleted too
+6. the sorting icon is not necessary
+7. We have to manually and explicitly call the css file since the layot we set it as null
+8. now we have to add the package in the main project: right click on project/dependenciew and click on manage nuget packages
+9. then we look for rotativa and select rotativa.Asp.net core
+10. Once installed we went to persons controller and we created a new method action personsPDF
+11. and then we go to index view and add the link to generate a pdf
+12. we got an error when trying to export a pdf because we needed to include this file -> wkhtmltopdf
+13. so we downloaded that file and extract the .exe file
+14. then we created a new folder in wwwroot with name Rotativa to place the .exe file
+15. the we go to program.cs to add rotativa and run the program
+16. I got an error with the view personsPDF, it was not set as content in the build propertie so when I changed I was able to make it work again.
+
+//--------------------------------------16. Generate CSV Files - Part 1
+if we want to convert to convert to csv files I have to use csh helper
+1. the first thing to do is to add a new method to the interface of persons to get the csv file
+2. so now we have to implement that method on the service (Streamwriter writes in the memory stream)
+3. we have to add csvhelper as a packet in the services project
+4. then we handle the population of the data in the memory stream
+5. Now we go to persons controller to convert the stream into a csv file when it gets called
+6. once we have got the info into csv we have to go to the index view to create the link to convert to CSV
+7. in the index view we added the link and added some marging left to give order
+
+//-------------------------------------17. Generate CSV Files - Part 2
+Problem with write records is that we can't filter the values that we want to show for example persoon ID so in this lesson we will understand how to do that Writefield(value) is the method
+1. in person service we will call the method csvconfiguration to adapt the values
+2. then we have writefield every value we want to include
+3. then we have to loop to our personresponse object to extract the values
+
+//-------------------------------------18. Generate Excel Files
+In order to generate Excel files the package EPPlus will be the most suitable
+1. we will install in poerson service the package
+2. in case to use just for own project we have to go to appsettings.json
+3. Then we have to add the lines to state that is for noncommercial use
+4. then In the persons interface we add a method Task<MemoryStream> GetPersonsExcel();
+5. then we have to go to the service to implement the excel
+6. after the excel is being terminated then we have to go and add the action method in the controller
+7. in the index we have to create now the hiperlink to the view of the excel
+8. then we added the formatting
+
+//-------------------------------------19. Excel to Database Upload - Part 1
+if we want to add the upload functionality in the database table we can do it as follows:
+1. First thing is we are going to add a new method in the interface Countries UploadFromExcelFile
+2. Task<int> UploadCountriesFromExcelFile(IFormFile formFile); then add on using using Microsoft.AspNetCore.Http;
+3. then we have to add to the dependencies in the service contracts the package (AspNetCoreHttp // It is deprecated in the time)
+4. now we are implementing the new method in the countries service
+5. first we create the memory dtream 
+6. then we convert to excel file we use copytiAsync to do that
+7. then in the workbook we will select the name and the data to be passed
+8. we opened an excel and added the values we wanted in there
+9. we had to add the country instead of country add request since we are dealing with the database
+
+//------------------------------------20. Excel to Database Upload - Part 2
+From the last lesson we have to create the UI so the process from the controller to the view
+1. Create a new controller for the country
+2. and give the routing
+3. Then adding the view of that controller
+4. multipart from data will allow to upload files
+5. once done with the view for upload we have to move to Layout view
+6. In the Layout view we will add the link for the uploadcountries and then we should be ready to go
+
+//-----------------------------------21. Excel to Database Upload - Part 3
+now we have to receive the post request in the controller method
+1. go to Uploaad controller and add the methods
+2. IFormFile to receive the file this name excelFile has to be the same as the one in the view for it to work propperly
+3. so once the methos are created and validated we have to go to the view
+4. In the view we will add the error messages from the controller
