@@ -48,4 +48,39 @@ Serilog is a log framework-> it offers loging to files and databases "sinks" is 
 So now we will add serilog sink
 1. in settings json we have to add the sinks
 2. the idea of this is to strore logs separately from console
-3. 
+
+//---------------------------------09. Serilog Database Sink
+We will log into a database with serilog
+1. We have to install a package serilog mssqlserver
+2. We have to add another sink for the ms sqlserver
+3. And then create into the write to
+4. then we will add manually a new database by going to database object click on the msslocaldb
+5. then we will right click on database and we will create it there
+
+//----------------------------------10. Serilog Seq
+Seq is used to monitor the loggs of the application in real time, we will install and use this app
+1. first go to google to download SEQ
+2. we have to create an account and then we will be able to use the software: admin c6
+3. now in the application we have to install a package for serilog seq
+4. then in appsettings we have to add the serilog and call it with the port number
+
+//----------------------------------11. Serilog RequestId
+it is the individual number for each request, usefull to track requests and responses
+
+//-----------------------------------12. Serilog Enrichers
+enriches are the extra description of every log
+1. we have to add the enrich in appsettings.json
+
+//----------------------------------13. Serilog IDiagnosticContext
+Diagnostic will addd extra values in the logs
+1. in the services project we have to install a package: Serilog.Extensions.Hosting
+2. then in persons service we added the propperty and inhected in the constructor
+3. then we added: _diagnosticContext.Set("Persons", persons); in get filtered persons
+4. then in program.cs we addeed the serilog logging
+5. but in order to print the actual value we have to gop to entities and override the toString method to show what we want
+
+//----------------------------------14. Serilog Timings
+This takes the timing of the execution of the code and print it
+1. first we have to install the package in the service project: serilog timings
+2. now in get filtered persons in person service we will add the timing
+3. we have to mock diagnostic context as well in tests
