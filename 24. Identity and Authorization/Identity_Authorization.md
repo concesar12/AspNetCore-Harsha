@@ -105,4 +105,28 @@ Conventional routing redirects all routes to an action method, this can be overr
 1. First We will create the enum that will have the user type roles
 2. then whenever we register a new user we have to add it to handle it in the controller so we add it to the registerDTO
 3. Now we will create a radio button in the register view to include the field
-4. Now in the controller we have to handle the role when the http post is done, 
+4. Now in the controller we have to handle the role when the http post is done
+
+//------------------------15. Areas
+Area is a group of controllers, views and models that are related to a specific module or specific user, so the idea in this lecture is to group everything related to administrator
+1. firstly we will strat by adding a scaffolded Item, this is to create the Admin space, to do that we have to go to UI and right click then add new scaffolded and create MVC Area
+2. This will generate code and directory trees, we have deleted the folder data sonce we already have that layer
+3.  then we have created a new controller, this one will have an attribute [Area("Admin")] which indicates this is for admin control
+4. after, we will create in the program.cs conventional routing(I can use attribute routing too)
+5. after added the route, we are going to create the view
+6. After the creation of the view we will add the flow in the login controller
+7. So after we successfull login we will ask if that user is in role admin
+8. Now we have to add a hyperlink for admin home, we will add it in the layoutview
+9. Since the views now are different from our main project we have to add the tag-helpers so we create : viewimports to import the tag helpers
+10. at the end we just aded a contition to see if the role of the user is Admin, then we will let him see the admin view
+
+//-----------------------16. Role Based Authentication
+we will add some pages for some partivular users only
+
+1. so if we want to only allow a specific user we as well have to use [Authorize(Roles = "Admin")], so only for this particular Admin this controller will be visible
+
+//---------------------17. Custom Authorization Policies
+so in case we want to prevent users to use login or any page, we can make two things, create a filter or we can use policies, and policies is what we will implement here
+1. The first step is to go to sonfigure service extension and in the autorization addPolicy
+2. as well we have to add the attribute Authorize above the method so this will be applied, we did it in the register in accountcontroller
+3. Then take out the allowanonymous because this will allow all pages even if they have policy restrictions
