@@ -130,3 +130,16 @@ so in case we want to prevent users to use login or any page, we can make two th
 1. The first step is to go to sonfigure service extension and in the autorization addPolicy
 2. as well we have to add the attribute Authorize above the method so this will be applied, we did it in the register in accountcontroller
 3. Then take out the allowanonymous because this will allow all pages even if they have policy restrictions
+
+//--------------------18. HTTPS
+The idea of https is to exchange messages between server and the client, the client will first send a message request, then the server will acknowledge that message, then the client will send a random value to the server, the server will ackowledge that random value and generate a certificate with signature, that is when the client receive that as a key.
+1. To make a project work with HTTPS we have to go to the program.cs file first and add app.UseHttpsRedirection();
+2. the we enforce https request and responses with HSTS
+3. then in the properties, launch settings we can change to https
+
+//----------------------19. XSRF
+Cross Site Request Forgery - CSRF is a process of making a requet to a web server from another domain using an existing authentication
+1. In this case the scenario is, from a legit request after we log in and received a auth token from the server, if we click on the wrong link an attacker might be able to steal information oir money. We will try to avoid this by using AntiForgeryToken
+2. We need to make sure we are using correctly the tag-helpers
+3. in the controllers we have to add [ValidateAntiForgeryToken]
+4. but now in ordewr to enable it globally we have gone to configure service extensions and add options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()); // Auto will validate in post action methods
