@@ -67,3 +67,40 @@ We will see if it is possible to maintain more than 1 cors policy (customization
 3. So if we want to add this for only some controller we have to add [EnableCors] in this case we added in citiesController
 4. So now the domain that works is: ng -serve --port 4100
 //---------------------------------10. Angular POST
+We will apply insertion operation in the application
+1. in our angular app we have top go to cities.service and add our post method
+2. as well we made something more dynamical and constant
+3. now in cities component we will create the forms 
+4. we have to expose the posty city in order to use it
+5. we added the submit as well
+6. Now we will create the view with the form that will have all the information to be processed
+7. then we will need to import the reactiveFormsModule
+
+//---------------------------------11. Angular PUT
+We will implement edit or update operation in the cities
+1. first we have to add the method put in cities.service
+2. Now in cities component we are going to create the put controller for this
+3. So now in the view that is cities component .html we will create the view for this
+4. as well in the view we have to enable "disable control" so we have to run in power shell: ng g directive directives/DisableControl
+5. now a new directive folder will be created , we have to add the directive in here to be applied
+
+//----------------------------------12. Angular DELETE
+we will implement the delete functionality for every city
+1. In order to create the delete, we have to go to cities.service.ts and create the method for it.
+2. then in the view we have to add the delete button
+3. we will try to create the delete butrton in the controller, we creted the modethod delete
+4. then in cities component we will try to add the list to form froup in order to show the list if a new element gets created.
+
+//----------------------------------13. Clean Architecture with Web API
+We will have clean architecture with API
+1. in the solution we will add a new project and class library
+2. now in dependencies we will add citiesmanager.core
+3. then we moved from models the city class to our entities folder in Cities manager core
+4. We changed the namespace and now we will create ou infrastructure project
+5. now we created our folder DatabaseContext and in this one we have moved ApplicationDbContext
+6. we moved migrations too to infrastructure folder
+7. as well we have installed sql framework and fix the using libraries
+8. And in the main app we have added references of the projects
+9. now we ran the project to clean errors
+10. after all error cleaning we will delete migrations and run again Add-Migration Initial
+11. then Database-Update
