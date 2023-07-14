@@ -103,6 +103,13 @@ After the expiration date we have to refresh it
 6. now in the account controller in the registration method we have to add the refresh token when success
 7. In register component we have to add the refresh token to be stored locally
 8. We are doing the same for login
+
 //---------------------------11. Refresh Tokens - Part 2
-
-
+we will try to get the tokens and generate a new one
+1. we will create a new button to generate a new token, in cities component html 
+2. now we will genereate in cities component.ts file a method that will handle the method to generate the token.
+3. but then we have to generate a post request for this in account services
+4. now we will need o create in our server side in the account controller our action method post to generate a new token.
+5. so in order for this new token to work we have to create a new DTO object to get the attributes to be passed.
+6. in thge IJWT interface we will create a new method called GetPrincipal JWT token.
+7. now we will implement this method in the actual service, we will first validate that the values are correct
